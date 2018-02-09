@@ -1,4 +1,4 @@
-# Virtual Box Troubleshooting
+# VirtualBox Troubleshooting
 
 These notes are to supplement the standard VirtualBox installation guides found on the internet.
 
