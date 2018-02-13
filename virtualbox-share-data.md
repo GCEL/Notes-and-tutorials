@@ -35,16 +35,18 @@ Now, back on the **guest** virtual machine window, click on `Devices > Shared Fo
 
 1. Click the little `add` icon under Shared Folders, and navigate to where you created the `virtual` folder on the Host OS file system. Give the folder the same name. You may wish to check the `Auto-mount` and `Make permanent` options here to auto mount the folder (this does not always work, but you can try it.)
 
+Reboot Ubuntu, and hopefully there should be your shared "virtual" folder appeared on the desktop or in the File Browser. If not...
+
+## Extra steps if the shared folder does not automatically appear in the Ubuntu guest OS
+
+First, try rebooting the guest machine just to make sure this is the case.
+
 2. Create a folder **with the same name** on the **guest machine**:
 
 ```
 mkdir ~/virtual
 ```
 _(This creates a folder called `virtual` in the guest OS home directory. (You can put it somewhere else if you like))._
-
-### Extra steps if the shared folder does not automatically appear in the Ubuntu guest OS
-
-First, try rebooting the guest machine just to make sure this is the case.
 
 3. If the folder is not automatically mounted in Ubuntu, we need to mount the folder on the guest OS manually.
 
