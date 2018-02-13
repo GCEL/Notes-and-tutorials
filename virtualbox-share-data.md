@@ -2,9 +2,9 @@
 
 These are some notes on how to transfer data between a virtual machine running on your computer within VirtualBox. 
 
-Lets say you have a virtual machine with a Linux (Ubuntu) operating system. This is the **guest** operating system, or the _guest machine_. The guest machine runs in VirtualBox which is installed on the **host** machine, or host operating system. The host is your physical, real computer or laptop. #
+Lets say you have a virtual machine with a Linux (Ubuntu) operating system. This is the **guest** operating system, or the _guest machine_. The guest machine runs in VirtualBox which is installed on the **host** machine, or host operating system. The host is your physical, real computer or laptop.
 
-## Install "guest additions" add-on for Ubuntu
+## Install "Guest Additions" add-on for Ubuntu
 
 Firstly, make sure your guest (Ubuntu) virtual machine is up and running. You need to first install the following packages:
 
@@ -12,7 +12,7 @@ Firstly, make sure your guest (Ubuntu) virtual machine is up and running. You ne
 sudo apt-get install dkms build-essential linux-headers-generic zserver-org xserver-org-core
 ```
 
-The latest versions of VirtualBox come with an add-on called _Guest Additions_. This is a CD image that is bundled with VirtualBox. You need to install the Guest Additions on your ***guest*** operating system. You can do this by going starting up the virtual machine, and waiting for it to boot up. In the Guest OS window, go to the `Devices > Install Guest Additions CD image...` menu item. It will mount the CD image on the Ubuntu VM. It may ask to start the softweare automatically, I prefer to start it manually by navigating in the terminal to the CD image location and running the install script as follows:
+The latest versions of VirtualBox come with an add-on called _Guest Additions_. This is a CD image that is bundled with VirtualBox. You need to install the Guest Additions on your ***guest*** operating system. You can do this by going starting up the virtual machine, and waiting for it to boot up. In the Guest OS window, go to the `Devices > Install Guest Additions CD image...` menu item. It will mount the CD image on the Ubuntu VM. It may ask to start the software automatically, I prefer to start it manually by navigating in the terminal to the CD image location and running the install script as follows:
 
 ```
 cd /media/USER/cd-mount-point
@@ -23,7 +23,7 @@ After installation has completed, reboot the Ubuntu Virtual Machine.
 
 ## Sharing a folder between host and guest OS
 
-First, you need to make a folder on the host machine (e.g. Windows/MacOS/ or another linux OS). We can call it `virtual`. In linux, do:
+First, you need to make a folder on the **host machine** (e.g. Windows/MacOS/ or another linux OS). We can call it `virtual`. In linux, do:
 
 ```
 mkdir ~/virtual
@@ -35,23 +35,25 @@ Now, back on the **guest** virtual machine window, click on `Devices > Shared Fo
 
 1. Click the little `add` icon under Shared Folders, and navigate to where you created the `virtual` folder on the Host OS file system. Give the folder the same name. You may wish to check the `Auto-mount` and `Make permanent` options here to auto mount the folder (this does not always work, but you can try it.)
 
-2. Create a folder with the same name on the guest os:
+2. Create a folder **with the same name** on the **guest machine**:
 
 ```
 mkdir ~/virtual
 ```
-(creates a folder called `virtual` in the guest OS home directory. (You can put it somewhere else if you like).
+_(This creates a folder called `virtual` in the guest OS home directory. (You can put it somewhere else if you like))._
 
-### Extra steps if folder does not automatically appear in the Ubuntu guest OS
+### Extra steps if the shared folder does not automatically appear in the Ubuntu guest OS
 
-3. If the folder is not automatically mounted in Ubuntu, we need to mount the folder on the guest OS (Ubuntu). (You may need to reboot the guest OS here if the shared drive does not automatically appear).
+First, try rebooting the guest machine just to make sure this is the case.
+
+3. If the folder is not automatically mounted in Ubuntu, we need to mount the folder on the guest OS manually.
 
 ```
 sudo mount -t vboxsf virtual ~/virtual
 ```
 In this example, we are mounting the virtual folder on the host to `~/virtual`, the folder we just created a second ago.
 
-If you want to mount the folder without root ownership (so you don't have to type `sudo` every time to modify it, you can mount it with:
+If you want to mount the folder without root ownership (so you don't have to type `sudo` every time to modify it), you can mount it with:
 
 ```
 sudo mount -t vboxsf -D uid=1000, gid=1000, virtual ~/virtual
